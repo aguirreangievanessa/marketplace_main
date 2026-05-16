@@ -29,6 +29,7 @@ class Category(models.Model):
         return self.name
 
 
+
 # =========================
 # 📦 Producto
 # =========================
