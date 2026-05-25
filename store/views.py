@@ -5,7 +5,6 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponseForbidden
 from .forms import ProductForm
-
 from .forms import RegisterForm
 from .models import Product
 from .models import Cart, CartItem, Category
@@ -51,8 +50,7 @@ def home(request):
 
     return render(request, 'store/home.html', {
         'page_obj': page_obj,
-        'categories': categories,
-        'products': products
+        'categories': categories
     })
 
 
@@ -101,7 +99,6 @@ def dashboard(request):
         'products': products
     })
 
-
 # =========================
 # ➕ Crear producto
 # =========================
@@ -118,7 +115,6 @@ def product_create(request):
         product.owner = request.user
         product.save()
         form.save_m2m()
-        
         return redirect('dashboard')
 
     return render(request, 'store/product_form.html', {'form': form})
@@ -159,8 +155,6 @@ def product_delete(request, pk):
         return redirect('dashboard')
 
     return render(request, 'store/product_confirm_delete.html', {'product': product})
-
-
 
 
 # =========================
